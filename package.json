@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Meghajit/Papyrus/issues"
   },
-  "homepage": "https://github.com/Meghajit/Papyrus#readme"
+  "homepage": "https://github.com/Meghajit/Papyrus#readme",
+  "dependencies": {
+    "puppeteer": "10.1.0"
+  }
 }
