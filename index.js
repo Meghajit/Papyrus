@@ -27,7 +27,7 @@ async function scrollToEndOfPage(page){
     waitUntil: 'networkidle2',
   });
   await page.emulateMediaType('screen');
-  await autoScroll(page);
+  await scrollToEndOfPage(page);
   await page.pdf({path: 'webpage.pdf', format: 'a4', preferCSSPageSize: true, landscape: true});
   await browser.close();
   })();
