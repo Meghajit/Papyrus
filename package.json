@@ -1,7 +1,7 @@
 {
   "name": "papyrus",
   "version": "1.0.0",
-  "description": "Papyrus is a node module to print webpages as pdf",
+  "description": "Papyrus is an application to save a pdf version of any webpage.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
