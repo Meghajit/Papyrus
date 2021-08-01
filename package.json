@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Meghajit/Papyrus#readme",
   "dependencies": {
+    "express": "4.17.1",
     "puppeteer": "10.1.0"
   }
 }

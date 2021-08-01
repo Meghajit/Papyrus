@@ -1,33 +1,31 @@
-const puppeteer = require('puppeteer');
+const pdfGenerator = require('./src/pdf-generator');
+const express = require('express');
+const app = express();
+app.use(express.json());
 
-async function scrollToEndOfPage(page){
-    await page.evaluate(async () => {
-        await new Promise((resolve, reject) => {
-            var totalHeightScrolled = 0;
-            var distanceToScrollPerIteration = 100;
-            var timer = setInterval(() => {
-                var scrollHeight = document.body.scrollHeight;
-                window.scrollBy(0, distanceToScrollPerIteration);
-                totalHeightScrolled += distanceToScrollPerIteration;
+const port = 3000;
 
-                if(totalHeightScrolled >= scrollHeight){
-                    clearInterval(timer);
-                    resolve();
-                }
-            }, 10);
+app.post('/pdf', (req, res) => {
+    console.log("Generating pdf...");
+    pdfGenerator.generate(req.body.webURL, 'webpage.pdf')
+        .then(result => {
+            console.log("Success: " + result);
+            res.sendFile('webpage.pdf',
+                {'root' : __dirname},
+                function (err) {
+                  if (err) {
+                    console.log("Error in sending file:" + err.stack);
+                  } else {
+                    console.log("File sent");
+                  }
+                });
+        })
+        .catch(err => {
+            console.log(err.stack);
+            res.sendStatus(500)
         });
-    });
-}
+});
 
-(async () => {
-  const browser = await puppeteer.launch();
-  const context = await browser.createIncognitoBrowserContext();
-  const page = await context.newPage();
-  await page.goto('https://en.wikipedia.org/wiki/Papyrus', {
-    waitUntil: 'networkidle2',
-  });
-  await page.emulateMediaType('screen');
-  await scrollToEndOfPage(page);
-  await page.pdf({path: 'webpage.pdf', format: 'a4', preferCSSPageSize: true, landscape: true});
-  await browser.close();
-  })();
+app.listen(port, () => {
+  console.log(`Papyrus listening at http://localhost:${port}`);
+});
