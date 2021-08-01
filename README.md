@@ -11,7 +11,7 @@ Papyrus is an application to save a pdf version of any webpage.
 ### 1. Install dependencies
 Run `npm install`
 
-###2. Start the server
+### 2. Start the server
 Run `node index.js`
 
 ## API
