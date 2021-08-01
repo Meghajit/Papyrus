@@ -23,10 +23,9 @@ Sample request:
 ```shell
 curl --location --request POST 'localhost:3000/pdf' --header 'Content-Type: application/json' --data-raw '{
     "webURL": "https://en.wikipedia.org/wiki/Papyrus"
-}'
+}' > download.pdf
 ```
-
-A pdf file will be prompted for download as a successful response.
+The pdf is written to the file `download.pdf`.
 
 ## Disclaimer
 
