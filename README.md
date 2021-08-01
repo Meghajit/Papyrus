@@ -4,10 +4,17 @@
 >
 >-- _John Locke_
 
-Papyrus is a node module which saves a pdf version of any webpage.
+Papyrus is an application to save a pdf version of any webpage.
 
 ## Usage
 
+### 1. Install dependencies
+Run `npm install`
+
+###2. Start the server
+Run `node index.js`
+
+## API
 Papyrus exposes just one `POST` endpoint for pdf generation: `/pdf`. The webpage to be printed is provided as the
 request body param `webURL`.
 
