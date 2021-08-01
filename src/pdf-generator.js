@@ -21,7 +21,7 @@ async function scrollToEndOfPage(page){
 
 const generate = async (webURL, fileName) => {
     let executionResult;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({executablePath: 'google-chrome-stable'});
     const context = await browser.createIncognitoBrowserContext();
     const page = await context.newPage();
     try {
