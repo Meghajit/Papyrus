@@ -28,11 +28,11 @@ app.post('/pdf', (req, res) => {
         });
 });
 
-app.post('/html2pdf', multer().single('file'), (req, res) => {
+app.post('/html2pdf', multer().any(), (req, res) => {
   console.log("Generating pdf...");
   
-  fs.writeFileSync("temp.html", req.file.buffer, 'utf8');
-  var content = fs.readFileSync("temp.html");
+  fs.writeFileSync("temp.html", req.files[0].buffer, 'utf8');
+  var content = fs.readFileSync("temp.html", "utf-8");
   pdfGenerator.generateFromHTML(content, 'webpage.pdf')
       .then(result => {
           console.log("Success: " + result);
