@@ -15,8 +15,9 @@ Run `npm install`
 Run `node index.js`
 
 ## API
-Papyrus exposes just one `POST` endpoint for pdf generation: `/pdf`. The webpage to be printed is provided as the
-request body param `webURL`.
+Papyrus exposes some `POST` endpoints for pdf generation: 
+
+1. `/pdf`: The webpage to be printed is provided as the request body param `webURL`.
 
 Sample request:
 
@@ -26,6 +27,15 @@ curl --location --request POST 'localhost:3000/pdf' --header 'Content-Type: appl
 }' > download.pdf
 ```
 The pdf is written to the file `download.pdf`.
+
+2. `/html2pdf`: The webpage to be printed is provided as an HTML file with any key.
+
+Sample request:
+
+```shell
+curl --location --request POST 'localhost:3000/html2pdf' \
+--form 'file=@"/path/to/file/Or/Use/sample.html/from/this/repo"' > download.pdf
+```
 
 ## Disclaimer
 
